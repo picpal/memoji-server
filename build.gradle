@@ -168,7 +168,7 @@ asciidoctor.doFirst{
 //	util {
 //		java {
 //			srcDir 'src/main/java'
-//			include 'com/picpal/framework/common/utils/html/**'
+//			include 'com/memoji/framework/common/utils/html/**'
 //		}
 //	}
 //}

@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class BoilerplateApplication {
+public class MemojiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BoilerplateApplication.class, args);
+		SpringApplication.run(MemojiApplication.class, args);
 	}
 
 }
