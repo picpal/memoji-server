@@ -39,7 +39,7 @@ public class SampleContorller {
 
     @GetMapping("/sample")
     public void sample(){
-
+        System.out.println("hello");
 
     }
 }

@@ -10,6 +10,12 @@ plugins {
 	id 'org.springframework.boot' version '3.2.2'
 	id 'io.spring.dependency-management' version '1.1.4'
 
+    // editorconfig plugin
+    id 'org.ec4j.editorconfig' version '0.0.3'
+
+    // checkstyle plugin
+    id 'checkstyle'
+
 	//restdocs + swagger
 	id 'org.asciidoctor.jvm.convert' version '3.3.1'
 	id 'com.epages.restdocs-api-spec' version "${restdocsApiSpecVersion}"
@@ -21,6 +27,20 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '17'
+}
+
+// editorplugin
+editorconfig{
+    excludes = ['build']
+}
+check.dependsOn editorconfigCheck
+
+// checkstyle plugin
+checkstyle {
+    maxWarnings = 0 // 규칙이 어긋나는 코드가 하나라도 있을 경우 빌드 fail을 내고 싶다면 이 선언을 추가한다.
+    configFile = file("${rootDir}/config/naver-checkstyle-rules.xml")
+    configProperties = ["suppressionFile" : "${rootDir}/config/naver-checkstyle-suppressions.xml"]
+    toolVersion ="8.24"  // checkstyle 버전 8.24 이상 선언
 }
 
 configurations {
@@ -74,7 +94,11 @@ dependencies {
 	// json
 	implementation 'com.googlecode.json-simple:json-simple:1.1'
 
-	// rest docs
+    // checkstyle
+    implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version: '10.17.0'
+
+
+    // rest docs
 	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 
